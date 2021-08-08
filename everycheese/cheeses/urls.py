@@ -19,5 +19,10 @@ urlpatterns = [
         view=views.CheeseDetailView.as_view(),
         name="detail",
     ),
+    path(
+        route="<slug:slug>/update/",
+        view=views.CheeseUpdateView.as_view(),
+        name="update",
+    )
 
 ]
