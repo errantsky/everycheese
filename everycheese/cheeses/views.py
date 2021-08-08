@@ -1,3 +1,5 @@
+from django.forms import BaseForm
+from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -21,3 +23,7 @@ class CheeseCreateView(LoginRequiredMixin, CreateView):
         'firmness',
         'country_of_origin',
     ]
+
+    def form_valid(self, form: BaseForm) -> HttpResponse:
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
